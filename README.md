@@ -1,31 +1,63 @@
 # Blog de fútbol
 
-Proyecto para definir y construir un blog editorial de fútbol en español, con una experiencia de lectura clara, navegación sencilla y diseño adaptable a móviles, tabletas y escritorio.
+Blog editorial de fútbol en español, diseñado para ofrecer una experiencia de lectura clara, navegación sencilla y una interfaz adaptable a móviles, tabletas y escritorio.
 
-> **Estado:** definición del producto y del MVP. Este repositorio contiene actualmente la documentación del proyecto; la aplicación todavía no está implementada.
+> **Estado:** estructura inicial de la aplicación creada. El contenido editorial se incorporará más adelante.
 
 ## Objetivo
 
-Reunir artículos de fútbol en un espacio ligero y fácil de recorrer. La primera versión prioriza el contenido y permite que los lectores descubran publicaciones recientes, lean cada artículo en su propia página y conozcan brevemente el blog o a su autor.
+Reunir artículos de fútbol en un espacio ligero y fácil de recorrer. El proyecto está preparado para incorporar publicaciones, páginas individuales de artículo y contenido local mantenible.
 
-## Alcance del MVP
-
-- **Inicio:** presentación del blog y listado de artículos recientes con título, fecha e imagen.
-- **Artículos:** página individual con URL legible, título, fecha, imagen y texto organizado.
-- **Acerca de:** información breve sobre el blog o su autor.
-- **Navegación clara:** enlaces entre las secciones y opción para volver a Inicio.
-- **No encontrado:** respuesta comprensible para artículos inexistentes, con un enlace a la portada.
-- **Diseño adaptable y accesible:** lectura cómoda en distintos tamaños de pantalla, HTML semántico, navegación por teclado y texto alternativo en imágenes informativas.
-- **Contenido mantenible:** artículos locales separados de la presentación para facilitar su revisión y sustitución.
-
-## Tecnologías previstas
+## Tecnologías
 
 - [Next.js](https://nextjs.org/) con App Router
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
 
-La primera versión está planteada para utilizar datos locales tipados. SQLite podría considerarse como opción local, pero no es un requisito. No se prevén servicios externos de contenido ni una base de datos remota para el MVP.
+## Requisitos
+
+- Node.js 20.9 o posterior
+- npm
+
+## Puesta en marcha
+
+```bash
+npm install
+npm run dev
+```
+
+Abre [http://localhost:3000](http://localhost:3000) para ver la aplicación.
+
+### Comandos disponibles
+
+```bash
+npm run dev       # Inicia el servidor de desarrollo
+npm run lint      # Ejecuta ESLint
+npm run typecheck # Comprueba los tipos de TypeScript
+npm run build     # Genera la compilación de producción
+npm run start     # Inicia la aplicación compilada
+```
+
+## Estructura
+
+```text
+src/
+├── app/
+│   ├── acerca-de/
+│   │   └── page.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── not-found.tsx
+│   └── page.tsx
+├── components/
+│   └── ui/
+│       └── button.tsx
+└── lib/
+    └── utils.ts
+```
+
+Las rutas y páginas utilizan el App Router de Next.js. Los componentes de shadcn/ui se guardan en el propio proyecto para poder adaptarlos a la identidad visual.
 
 ## Documentación
 
@@ -38,7 +70,3 @@ La primera versión está planteada para utilizar datos locales tipados. SQLite 
 ## Fuera del alcance inicial
 
 El MVP no contempla cuentas de usuario, comentarios, buscador, suscripciones, publicación automatizada, panel de administración ni CMS.
-
-## Puesta en marcha
-
-La aplicación aún no está implementada, por lo que este repositorio todavía no incluye instrucciones de instalación o ejecución. Esta sección se actualizará cuando se incorpore el código de la aplicación.
