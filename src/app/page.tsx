@@ -1,8 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { articles } from "@/lib/articles";
+import { getPublishedArticles } from "@/lib/database";
+import { shouldOptimizeImage } from "@/lib/image-source";
+
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
+  const articles = getPublishedArticles();
+
   return (
     <main className="main-content">
       <section className="hero" aria-labelledby="hero-title">
@@ -48,6 +53,7 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
                   src={article.image}
+                  unoptimized={!shouldOptimizeImage(article.image)}
                 />
               </div>
               <div className="story-card-content">

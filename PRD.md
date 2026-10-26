@@ -4,11 +4,12 @@
 
 Crear un blog de fútbol sencillo, en español y adaptable a móviles, tabletas y escritorio. El sitio permitirá a los visitantes leer los artículos más recientes, abrir cada publicación en una página propia y consultar información breve sobre el blog o su autor.
 
-La primera versión se centrará en ofrecer una experiencia de lectura clara y navegación directa. No incluirá cuentas, comentarios, buscador, suscripciones ni un panel de administración.
+La primera versión se centrará en ofrecer una experiencia de lectura clara y navegación directa, junto con un panel privado para que el editor gestione artículos.
 
 ## 2. Objetivos
 
 - Publicar y presentar artículos de fútbol de forma ordenada.
+- Permitir al editor crear y actualizar artículos y decidir si están publicados.
 - Permitir que los lectores encuentren y abran fácilmente las publicaciones recientes.
 - Proporcionar una lectura cómoda en distintos tamaños de pantalla.
 - Mantener el contenido inicial de ejemplo fácil de revisar y reemplazar.
@@ -77,7 +78,8 @@ La primera versión se centrará en ofrecer una experiencia de lectura clara y n
 - Usar el **App Router** de Next.js para la portada, la página informativa y las rutas individuales de artículos.
 - Usar la biblioteca de componentes **shadcn/ui** para construir la interfaz, manteniendo los componentes y estilos consistentes con el proyecto.
 - Hacer uso de TailwindCSS para los estilos, ya que si usamos shadcn será obligatorio por si queremos cambiar los componentes de dicha biblioteca.
-- Para el MVP, mantener los artículos en datos locales tipados con un identificador de URL (slug), título, fecha, contenido y una imagen. Si resulta conveniente, se podrá usar SQLite como base de datos local; no se requieren bases de datos remotas ni servicios externos de contenido.
+- Guardar los artículos en SQLite local, incluyendo su estado de publicación, e inicializar la base de datos con los artículos de ejemplo.
+- Proteger el panel de administración con una contraseña configurada en una variable de entorno; no se incluyen cuentas ni perfiles de usuario.
 - Renderizar las páginas en el servidor siempre que sea apropiado para mantener una experiencia rápida y contenido indexable.
 - Mantener la solución sencilla y evitar añadir paquetes innecesarios.
 
@@ -89,20 +91,22 @@ La primera versión se centrará en ofrecer una experiencia de lectura clara y n
 4. La navegación permite llegar a Inicio y Acerca de, y regresar desde las páginas secundarias.
 5. Una ruta de artículo inexistente muestra una respuesta de no encontrado con una vía de regreso.
 6. El diseño se adapta a móvil, tableta y escritorio, conserva la legibilidad y no requiere desplazamiento horizontal.
-7. El contenido de ejemplo está relacionado con fútbol y puede sustituirse editando los datos locales, sin cambiar la estructura de las páginas.
-8. La interfaz se presenta en español y las páginas tienen títulos descriptivos.
+7. El editor puede crear y editar artículos desde `/admin`, añadir secciones y guardar los cambios en SQLite.
+8. El editor puede marcar cada artículo como publicado o borrador; solo los publicados aparecen en la portada y en sus páginas públicas.
+9. El panel solicita la contraseña configurada y rechaza las operaciones de escritura sin una sesión válida.
+10. La interfaz se presenta en español y las páginas tienen títulos descriptivos.
 
 ## 8. Fuera del alcance de la primera versión
 
-- Registro, inicio de sesión o perfiles.
+- Registro, perfiles de usuario y permisos por rol.
 - Comentarios y moderación.
 - Búsqueda o filtrado de artículos.
 - Suscripciones, newsletter o notificaciones.
-- Publicación automatizada y panel de administración.
-- CMS, bases de datos remotas o integración con servicios externos de contenido.
+- Publicación automatizada y CMS externo.
+- Bases de datos remotas o integración con servicios externos de contenido.
 
 ## 9. Supuestos y decisiones pendientes
 
 - El blog comenzará con contenido editorial de ejemplo revisable y reemplazable.
 - La frecuencia de publicación, identidad visual definitiva, nombre del blog y autor se definirán al preparar el contenido real.
-- No se especifica una estrategia de despliegue; se elegirá cuando se conozca el entorno de publicación.
+- El panel usa SQLite local; el entorno de producción debe ofrecer almacenamiento persistente o sustituir SQLite por una base de datos persistente.

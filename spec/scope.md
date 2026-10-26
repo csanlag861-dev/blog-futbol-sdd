@@ -33,6 +33,11 @@ Definir las funcionalidades, el contenido y las restricciones de la primera vers
 - Incluir artículos iniciales de ejemplo relacionados con el fútbol.
 - Mantener los datos separados de la presentación visual para que se puedan revisar y sustituir sin rehacer las páginas.
 - No presentar contenido de ejemplo pendiente de revisión como contenido editorial definitivo.
+- Permitir al editor crear y editar artículos desde un panel privado en `/admin`.
+- Guardar artículos y su estado de publicación en SQLite local.
+- Mostrar en el blog únicamente los artículos publicados y conservar los borradores en el panel.
+- Permitir organizar el cuerpo del artículo en secciones con subtítulos y párrafos.
+- Proteger el panel y sus operaciones de escritura con una contraseña configurada mediante una variable de entorno.
 
 ### Experiencia y calidad
 
@@ -46,15 +51,18 @@ Definir las funcionalidades, el contenido y las restricciones de la primera vers
 
 ## Fuera del alcance
 
-- Registro, inicio de sesión, cuentas o perfiles.
+- Registro, cuentas, perfiles de usuario y permisos por rol.
 - Comentarios, interacción social o moderación.
 - Búsqueda o filtrado de artículos.
 - Suscripciones, newsletter o notificaciones.
-- Publicación automatizada o panel de administración.
-- CMS, bases de datos remotas o integración con servicios externos de contenido. Se permite SQLite como opción de base de datos local.
+- Publicación automatizada.
+- CMS o integración con servicios externos de contenido.
+- Despliegue en almacenamiento efímero sin una base de datos persistente.
 
 ## Supuestos y decisiones pendientes
 
 - El contenido inicial será editorial de ejemplo, revisable y reemplazable.
 - El nombre definitivo, la identidad visual, el autor y la frecuencia de publicación se concretarán al preparar el contenido real.
 - El entorno y la estrategia de despliegue se definirán cuando se conozca el destino de publicación.
+- El editor del sitio es la única persona administradora; no se necesitan perfiles de usuario.
+- El despliegue debe ofrecer almacenamiento persistente para el archivo SQLite.

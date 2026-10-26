@@ -2,21 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { articles } from "@/lib/articles";
+import { getPublishedArticle } from "@/lib/database";
+import { shouldOptimizeImage } from "@/lib/image-source";
+
+export const dynamic = "force-dynamic";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return articles.map(({ slug }) => ({ slug }));
-}
-
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = articles.find((item) => item.slug === slug);
+  const article = getPublishedArticle(slug);
 
   if (!article) {
     return {};
@@ -30,7 +29,7 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
-  const article = articles.find((item) => item.slug === slug);
+  const article = getPublishedArticle(slug);
 
   if (!article) {
     notFound();
@@ -62,6 +61,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             priority
             sizes="(max-width: 900px) 100vw, 860px"
             src={article.image}
+            unoptimized={!shouldOptimizeImage(article.image)}
           />
         </div>
         <div className="article-body">

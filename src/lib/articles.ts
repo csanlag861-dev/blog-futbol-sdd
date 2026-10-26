@@ -8,6 +8,7 @@ export type Article = {
   lead: string;
   image: string;
   imageAlt: string;
+  published: boolean;
   sections: {
     heading: string;
     paragraphs: string[];
@@ -28,6 +29,7 @@ export const articles: Article[] = [
     image:
       "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1600&q=85",
     imageAlt: "Balón de fútbol sobre el césped de un campo",
+    published: true,
     sections: [
       {
         heading: "El trabajo invisible",
@@ -58,6 +60,7 @@ export const articles: Article[] = [
     image:
       "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1600&q=85",
     imageAlt: "Vista amplia de un campo de fútbol iluminado",
+    published: true,
     sections: [
       {
         heading: "Una señal para empezar",
@@ -88,6 +91,7 @@ export const articles: Article[] = [
     image:
       "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1600&q=85",
     imageAlt: "Jugadores disputando un partido de fútbol al aire libre",
+    published: true,
     sections: [
       {
         heading: "Reglas que nacen jugando",
@@ -118,6 +122,7 @@ export const articles: Article[] = [
     image:
       "https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=1600&q=85",
     imageAlt: "Varios balones de fútbol sobre el césped",
+    published: true,
     sections: [
       {
         heading: "El camino también es parte del partido",

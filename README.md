@@ -2,7 +2,7 @@
 
 Blog editorial de fútbol en español, diseñado para ofrecer una experiencia de lectura clara, navegación sencilla y una interfaz adaptable a móviles, tabletas y escritorio.
 
-> **Estado:** estructura inicial de la aplicación creada. El contenido editorial se incorporará más adelante.
+> **Estado:** blog con artículos iniciales y panel privado para gestionarlos.
 
 ## Objetivo
 
@@ -27,6 +27,28 @@ npm install
 npm run dev
 ```
 
+Para habilitar el panel, copia `.env.example` a `.env.local`, establece una
+contraseña larga para `ADMIN_PASSWORD` y reinicia el servidor:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+El panel está disponible en `/admin`. Permite crear y editar artículos, añadir
+secciones y decidir si cada artículo está publicado. Los borradores solo
+aparecen en el panel. Los perfiles de usuario no están incluidos porque el blog
+todavía no tiene cuentas.
+
+Las imágenes pueden ser rutas locales o URLs HTTPS de cualquier dominio. Las
+imágenes de Unsplash se optimizan con Next.js; las de otros sitios se cargan
+directamente desde el navegador, así que el servidor no necesita una lista de
+dominios ni descarga esas imágenes.
+
+Los artículos se guardan en `data/blog.sqlite`, que se crea automáticamente y
+no se incluye en Git. En producción, SQLite requiere un disco persistente; si
+el proveedor de despliegue no lo ofrece, habrá que migrar a una base de datos
+persistente antes de publicar cambios desde el panel.
+
 Abre [http://localhost:3000](http://localhost:3000) para ver la aplicación.
 
 ### Comandos disponibles
@@ -44,8 +66,11 @@ npm run start     # Inicia la aplicación compilada
 ```text
 src/
 ├── app/
+│   ├── admin/
+│   ├── api/admin/
 │   ├── acerca-de/
 │   │   └── page.tsx
+│   ├── articulos/[slug]/
 │   ├── globals.css
 │   ├── layout.tsx
 │   ├── not-found.tsx
@@ -54,6 +79,9 @@ src/
 │   └── ui/
 │       └── button.tsx
 └── lib/
+    ├── admin-auth.ts
+    ├── articles.ts
+    ├── database.ts
     └── utils.ts
 ```
 
@@ -69,4 +97,5 @@ Las rutas y páginas utilizan el App Router de Next.js. Los componentes de shadc
 
 ## Fuera del alcance inicial
 
-El MVP no contempla cuentas de usuario, comentarios, buscador, suscripciones, publicación automatizada, panel de administración ni CMS.
+El MVP no contempla cuentas ni perfiles de usuario, comentarios, buscador,
+suscripciones, publicación automatizada ni un CMS externo.
