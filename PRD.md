@@ -62,6 +62,13 @@ La primera versión se centrará en ofrecer una experiencia de lectura clara y n
 - **Acerca de (`/acerca-de`):** presenta información breve sobre el blog o su autor y ofrece una forma de volver a Inicio.
 - **No encontrado:** página para direcciones de artículos inexistentes, con un mensaje comprensible y un enlace a Inicio.
 
+### 4.6 API REST
+
+- `GET /api/articulos/` devuelve los artículos publicados en JSON.
+- `GET /api/articulos/[slug]/` devuelve un artículo publicado o una respuesta `404` si no existe o es un borrador.
+- `POST /api/articulos/` permite crear un borrador mediante un token Bearer configurado en `API_TOKEN`. El servidor fija su estado como no publicado, independientemente del cuerpo enviado.
+- La API reutiliza el tipo `Article`, las validaciones y la persistencia SQLite existentes. El token de automatización es independiente de la sesión del panel, que continúa autenticándose con `ADMIN_PASSWORD`.
+
 ## 5. Requisitos no funcionales
 
 - **Diseño adaptable:** el contenido y la navegación deben funcionar en móviles, tabletas y escritorio, sin desplazamiento horizontal de la página.
@@ -95,6 +102,7 @@ La primera versión se centrará en ofrecer una experiencia de lectura clara y n
 8. El editor puede marcar cada artículo como publicado o borrador; solo los publicados aparecen en la portada y en sus páginas públicas.
 9. El panel solicita la contraseña configurada y rechaza las operaciones de escritura sin una sesión válida.
 10. La interfaz se presenta en español y las páginas tienen títulos descriptivos.
+11. La API REST lista únicamente artículos publicados, no permite consultar borradores y solo crea borradores mediante el token Bearer configurado en el servidor.
 
 ## 8. Fuera del alcance de la primera versión
 

@@ -115,3 +115,11 @@ export function validateArticle(value: unknown): ArticleValidation {
     },
   };
 }
+
+export function validateDraftArticle(value: unknown): ArticleValidation {
+  if (!isRecord(value)) {
+    return validateArticle(value);
+  }
+
+  return validateArticle({ ...value, published: false });
+}

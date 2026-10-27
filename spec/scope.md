@@ -38,6 +38,8 @@ Definir las funcionalidades, el contenido y las restricciones de la primera vers
 - Mostrar en el blog únicamente los artículos publicados y conservar los borradores en el panel.
 - Permitir organizar el cuerpo del artículo en secciones con subtítulos y párrafos.
 - Proteger el panel y sus operaciones de escritura con una contraseña configurada mediante una variable de entorno.
+- Proporcionar una API REST mediante Route Handlers del App Router: listar artículos publicados (`GET /api/articulos/`), consultar un artículo publicado por slug (`GET /api/articulos/[slug]/`) y crear borradores autenticados con Bearer token (`POST /api/articulos/`).
+- Reutilizar el contrato `Article`, la validación y la base SQLite del proyecto. El token de API se configura como `API_TOKEN` solo en el servidor y es independiente de la sesión del panel. La API pública no expone borradores y el cliente no puede publicar artículos mediante el POST.
 
 ### Experiencia y calidad
 
